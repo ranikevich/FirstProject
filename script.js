@@ -39,7 +39,6 @@ switch (true) {
     case fullPrice >= 0 && fullPrice < 15000:
         console.log('Скидка не предусмотрена');
         break;
-    case fullPrice < 0:
+    default:
             console.log('Что-то пошло не так');
-            break;
  }

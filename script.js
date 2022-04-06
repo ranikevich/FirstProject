@@ -14,26 +14,20 @@ const servicePrice2 = +prompt('Сколько это будет стоить?');
 let allServicePrices;
 let fullPrice;
 let servicePercentPrice;
-let str;
-let firstLetter;
 
-const getAllServicePrices = function(servicePrice) {
-     return servicePrice1 + servicePrice2;
+const getAllServicePrices = function(price1Service, price2Service) {
+     return price1Service + price2Service;
 };
 
-function getFullPrice () {
-    return screenPrice + allServicePrices;
+function getFullPrice (priceScreen, allService) {
+    return priceScreen + allService;
 }
 
 const getTitle = function(str) {
     if (str) {
-        str = str.trim();
-        str = str.toLowerCase();
-        firstLetter = str.slice(0, 1);
-        firstLetter = firstLetter.toUpperCase();
-        str = firstLetter + str.substring(1);
-        console.log(str);
-    }
+    str = str.trim().toLowerCase();
+    return str[0].toUpperCase() + str.substring(1);}
+    return '';
 };
 
 const getServicePercentPrices = function() {
@@ -42,10 +36,10 @@ const getServicePercentPrices = function() {
 
 const getRollbackMessage = function(price) {
     if (price >= 30000) {
-            return 'Даем скидку в 10%';
-     }else if (price >= 15000 && price < 30000) {
+        return 'Даем скидку в 10%';
+     }else if (price >= 15000) {
         return 'Даем скидку в 5%';
-     } else if (price >= 0 && price < 15000) {
+     } else if (price >= 0) {
         return 'Скидка не предусмотрена';
      } else {
         return 'Что-то пошло не так';
@@ -57,14 +51,14 @@ const showTypeOf = function(variable) {
 };
 
 
-allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice();
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices();
 
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
-getTitle(title);
+console.log(getTitle(title));
 console.log(getRollbackMessage(fullPrice));
 console.log("Итоговая стоимость за вычетом отката посреднику", servicePercentPrice, "рублей");
 

@@ -13,8 +13,6 @@ let service1;
 let service2;
 let servicePrice1;
 let servicePrice2;
-let str;
-let firstLetter;
 
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
@@ -52,19 +50,15 @@ const getAllServicePrices = function() {
     return sum;
 };
 
-function getFullPrice () {
-    return screenPrice + allServicePrices;
+function getFullPrice (priceScreen, allService) {
+    return priceScreen + allService;
 }
 
 const getTitle = function(str) {
     if (str) {
-        str = str.trim();
-        str = str.toLowerCase();
-        firstLetter = str.slice(0, 1);
-        firstLetter = firstLetter.toUpperCase();
-        str = firstLetter + str.substring(1);
-        console.log(str);
-    }
+    str = str.trim().toLowerCase();
+    return str[0].toUpperCase() + str.substring(1);}
+    return '';
 };
 
 const getServicePercentPrices = function() {
@@ -74,9 +68,9 @@ const getServicePercentPrices = function() {
 const getRollbackMessage = function(price) {
     if (price >= 30000) {
             return 'Даем скидку в 10%';
-     }else if (price >= 15000 && price < 30000) {
+     }else if (price >= 15000) {
         return 'Даем скидку в 5%';
-     } else if (price >= 0 && price < 15000) {
+     } else if (price >= 0) {
         return 'Скидка не предусмотрена';
      } else {
         return 'Что-то пошло не так';
@@ -90,13 +84,13 @@ const showTypeOf = function(variable) {
 asking();
 allServicePrices = getAllServicePrices();
 
-fullPrice = getFullPrice();
+fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices();
 
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
-getTitle(title);
+console.log(getTitle(title));
 console.log(getRollbackMessage(fullPrice));
 console.log("Итоговая стоимость за вычетом отката посреднику", servicePercentPrice, "рублей");
 

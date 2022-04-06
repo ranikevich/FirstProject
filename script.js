@@ -57,7 +57,8 @@ function getFullPrice () {
 }
 
 const getTitle = function(str) {
-    if (str && str.trim()) {
+    if (str) {
+        str = str.trim();
         str = str.toLowerCase();
         firstLetter = str.slice(0, 1);
         firstLetter = firstLetter.toUpperCase();

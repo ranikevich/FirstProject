@@ -1,24 +1,55 @@
 'use strict';
 
-const title = prompt('Как называется ваш проект?');
-const screens = prompt('Какие типы экранов нужно разработать?');
-const screenPrice = +prompt('Сколько будет стоить данная работа?');
 const rollback = 15;
-const adaptive = confirm('Нужен ли адаптив на сайте?');
-const service1 = prompt('Какой дополнительный тип услуги нужен?');
-const servicePrice1 = +prompt('Сколько это будет стоить?');
-const service2 = prompt('Какой дополнительный тип услуги нужен?');
-const servicePrice2 = +prompt('Сколько это будет стоить?');
 
-
+let title;
+let screens;
+let screenPrice;
+let adaptive;
 let allServicePrices;
 let fullPrice;
 let servicePercentPrice;
+let service1;
+let service2;
+let servicePrice1;
+let servicePrice2;
 let str;
 let firstLetter;
 
-const getAllServicePrices = function(servicePrice) {
-     return servicePrice1 + servicePrice2;
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
+};
+
+const asking = function() {
+    title = prompt('Как называется ваш проект?');
+    screens = prompt('Какие типы экранов нужно разработать?', 'Простые и сложные');
+    do {
+    screenPrice = prompt('Сколько будет стоить данная работа?');
+} while (!isNumber(screenPrice));
+    screenPrice = +screenPrice;
+    adaptive = confirm('Нужен ли адаптив на сайте?');
+};
+
+
+const getAllServicePrices = function() {
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            service1 = prompt('Какой дополнительный тип услуги нужен?');
+            do {
+                servicePrice1 = prompt('Сколько это будет стоить?');
+            } while (!isNumber(servicePrice1));
+        } else if (i === 1) {
+            service2 = prompt('Какой дополнительный тип услуги нужен?');
+            do {
+                servicePrice2 = prompt('Сколько это будет стоить?');
+            } while (!isNumber(servicePrice2));
+        }
+        servicePrice1 = +servicePrice1;
+        servicePrice2 = +servicePrice2;
+        sum = servicePrice1 + servicePrice2;  
+    }
+    return sum;
 };
 
 function getFullPrice () {
@@ -55,8 +86,9 @@ const showTypeOf = function(variable) {
     console.log(typeof variable);
 };
 
-
+asking();
 allServicePrices = getAllServicePrices();
+
 fullPrice = getFullPrice();
 servicePercentPrice = getServicePercentPrices();
 
@@ -66,9 +98,4 @@ showTypeOf(adaptive);
 getTitle(title);
 console.log(getRollbackMessage(fullPrice));
 console.log("Итоговая стоимость за вычетом отката посреднику", servicePercentPrice, "рублей");
-
-
-console.log ("Стоимость верстки экранов",screenPrice,"рублей");
-console.log ("Стоимость разработки сайта",fullPrice,"рублей"); 
-console.log ("Откат посреднику за работу", fullPrice * (rollback / 100), "рублей");
 

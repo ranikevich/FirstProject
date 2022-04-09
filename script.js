@@ -14,7 +14,7 @@ const appData = {
     servicePrice1: 0,
     servicePrice2: 0,
     asking: function() {
-        appData.title = prompt('Как называется ваш проект?');
+        appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
         appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые и сложные');
         do {
             appData.screenPrice = prompt('Сколько будет стоить данная работа?');

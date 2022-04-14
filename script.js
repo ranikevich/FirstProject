@@ -10,8 +10,6 @@ const appData = {
     fullPrice: 0,
     servicePercentPrice: 0,
     services: {},
-    servicePrice1: 0,
-    servicePrice2: 0,
 
     asking: function() {
         do {
@@ -70,11 +68,8 @@ const appData = {
         appData.fullPrice = +appData.screenPrice + appData.allServicePrices;
     },
 
-    getTitle: function(str) {
-        if (str) {
-        str = str.trim().toLowerCase();
-        appData.title = str[0].toUpperCase() + str.substring(1);}
-        appData.title = '';
+    getTitle: function() {
+        appData.title = appData.title.trim()[0].toUpperCase() + appData.title.trim().substring(1).toLowerCase();
     },
 
     getServicePercentPrices: function() {
@@ -103,15 +98,19 @@ const appData = {
     },
     
     logger: function() {
+        console.log(appData.title);
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
+        console.log(appData.screens);
         for (let key in appData) {
             console.log("Ключ:" + key + " " + "Значение:" + appData[key]);
         }
-        console.log(appData.screens);
+        console.log(typeof appData.title);
+        console.log(typeof appData.fullPrice);
     }
 };
  
 appData.start();
+
 
 

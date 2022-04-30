@@ -1,5 +1,21 @@
 'use strict';
 
+const title = document.getElementsByTagName('h1')[0];
+const buttonStart = document.getElementsByClassName('handler_btn')[0];
+const buttonReset = document.getElementsByClassName('handler_btn')[1];
+const buttonPlus = document.querySelector('.screen-btn');
+const hasClassPercent = document.querySelectorAll('.other-items.percent');
+const hasClassNumber = document.querySelectorAll('.other-items.number');
+const inputTypeRange = document.querySelector('.rollback input');
+const spanRangeValue = document.querySelector('.rollback span');
+const total = document.getElementsByClassName('total-input')[0];
+const totalCount = document.getElementsByClassName('total-input')[1];
+const totalCountOther = document.getElementsByClassName('total-input')[2];
+const totalFullCount = document.getElementsByClassName('total-input')[3];
+const totalCountRollback = document.getElementsByClassName('total-input')[4];
+let screens = document.querySelectorAll('.screen');
+
+
 const appData = {
     rollback: 15,
     title: '',
@@ -105,12 +121,23 @@ const appData = {
         for (let key in appData) {
             console.log("Ключ:" + key + " " + "Значение:" + appData[key]);
         }
-        console.log(typeof appData.title);
-        console.log(typeof appData.fullPrice);
     }
 };
  
-appData.start();
-
+//appData.start();
+console.log(title);
+console.log(buttonStart);
+console.log(buttonReset);
+console.log(buttonPlus);
+console.log(hasClassPercent);
+console.log(hasClassNumber);
+console.log(inputTypeRange);
+console.log(spanRangeValue);
+console.log(total);
+console.log(totalCount);
+console.log(totalCountOther);
+console.log(totalFullCount);
+console.log(totalCountRollback);
+console.log(screens);
 
 

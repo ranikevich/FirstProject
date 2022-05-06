@@ -4,8 +4,6 @@ const title = document.getElementsByTagName('h1')[0];
 
 const buttonStart = document.getElementsByClassName('handler_btn')[0];
 const buttonReset = document.getElementsByClassName('handler_btn')[1];
-const selectOptions = document.querySelector('.main-controls__select>select');
-const inputOptions = document.querySelector('.main-controls__input>input');
 
 const buttonPlus = document.querySelector('.screen-btn');
 
@@ -29,8 +27,6 @@ const appData = {
     rollback: 0,
     title: '',
     screens: [],
-    select: '',
-    input: '',
     screenCount: 0,
     screenPrice: 0,
     adaptive: true,
@@ -128,12 +124,9 @@ const appData = {
 
     init: function() {
         appData.addTitle();
-        appData.blockedButton();
         buttonPlus.addEventListener('click', appData.addScreenBlock);
         inputTypeRange.addEventListener('input', appData.changeRollback);
-        selectOptions.addEventListener('change', appData.verificationSelect);
-        inputOptions.addEventListener('input', appData.verificationInput);
-        buttonStart.addEventListener('click', appData.start);
+        buttonStart.addEventListener('click', appData.verificationScreen);
     },
 
     start: function() {
@@ -155,24 +148,30 @@ const appData = {
         }
     },
 
-    verificationSelect: function () {
-        appData.select = selectOptions.value;
-        appData.blockedButton();
-    },
-
-    verificationInput: function () {
-        appData.input = inputOptions.value;
-        appData.blockedButton();
-    },
-
-    blockedButton: function () {
-        if (appData.select !== '' && appData.input !== '') {
-            buttonStart.removeAttribute('disabled');
-            buttonStart.style.cursor = 'pointer';
-        } else {
-            buttonStart.disabled = 'disabled';
-            buttonStart.style.cursor = 'not-allowed';
-        }
+    verificationScreen: function () {
+        let flag = true;
+        screens = document.querySelectorAll('.screen');
+        screens.forEach(function(screen) {
+            const select = screen.querySelector('select').value;
+            const input = screen.querySelector('input').value;
+            console.log(select);
+            console.log(input);
+            for (let i=0; i<=screens.length-1; i++) {
+            if (select == "" || input == "") {
+                    flag = false;
+                    console.log(flag);
+                } else {
+                    console.log(flag);
+                }
+            }
+        });
+            if (flag === true) {
+                appData.start();
+            } else {
+                alert('Проверьте заполнены ли типы экранов и их количество')
+            }
+            
+        
     }
 
 };

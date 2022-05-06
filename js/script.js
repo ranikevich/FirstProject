@@ -82,7 +82,7 @@ const appData = {
         const cloneScreen = screens[0].cloneNode(true);
         const cloneScreenInput = cloneScreen.querySelector('input');
         cloneScreenInput.value = '';
-        screens[0].after(cloneScreen);
+        screens[screens.length-1].after(cloneScreen);
         screens = document.querySelectorAll('.screen');
     },
 

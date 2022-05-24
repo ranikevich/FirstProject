@@ -85,7 +85,7 @@ const appData = {
         const cloneScreenInput = cloneScreen.querySelector('input');
         cloneScreenInput.value = '';
         screens[screens.length-1].after(cloneScreen);
-        // screens = document.querySelectorAll('.screen');
+        screens = document.querySelectorAll('.screen');
     },
 
     addPrices: function () {

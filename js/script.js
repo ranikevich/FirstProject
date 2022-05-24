@@ -85,7 +85,7 @@ const appData = {
         const cloneScreenInput = cloneScreen.querySelector('input');
         cloneScreenInput.value = '';
         screens[screens.length-1].after(cloneScreen);
-        screens = document.querySelectorAll('.screen');
+        // screens = document.querySelectorAll('.screen');
     },
 
     addPrices: function () {
@@ -139,6 +139,7 @@ const appData = {
     },
 
     verificationScreen: function () {
+        screens = document.querySelectorAll('.screen');
         let flag = true;
         screens.forEach((screen) => {
             let select = screen.querySelector('select').value;
@@ -181,6 +182,8 @@ const appData = {
             input.disabled = 'disabled';
         });
 
+        inputTypeRange.disabled = 'disabled';
+
         buttonStart.style = 'display: none;';
         buttonReset.style = 'display: flex;';
     },
@@ -206,6 +209,8 @@ const appData = {
             check.removeAttribute('disabled');
             input.removeAttribute('disabled');
         });
+
+        inputTypeRange.removeAttribute('disabled');
     },
 
     clearScreens: function () {
@@ -292,7 +297,6 @@ const appData = {
         this.addPrices();
         // appData.logger();
         this.showResult();
-        console.log(this);
     },
 
     reset: function () {
@@ -303,7 +307,6 @@ const appData = {
         this.clearRollback();
         this.clearShowResult();
         this.clearAppData();
-        console.log(this);
     }
 };
 

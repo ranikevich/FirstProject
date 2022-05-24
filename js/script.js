@@ -139,7 +139,6 @@ const appData = {
     },
 
     verificationScreen: function () {
-        screens = document.querySelectorAll('.screen');
         let flag = true;
         screens.forEach((screen) => {
             let select = screen.querySelector('select').value;
@@ -223,7 +222,7 @@ const appData = {
                 screen.remove();
             }
         });
-        
+        screens = document.querySelectorAll('.screen');
         
     },
 
